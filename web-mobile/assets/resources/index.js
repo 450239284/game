@@ -1,6 +1,625 @@
-System.register("chunks:///_virtual/MultTextures.ts",["cc","./env"],(function(t){var e,r,a,i,s,n,u,h,l,c,o,f,d,p,D,v,m,y,_,M,x;return{setters:[function(t){e=t.cclegacy,r=t.gfx,a=t.Material,i=t.Component,s=t.ImageAsset,n=t.Texture2D,u=t.game,h=t.Game,l=t.director,c=t.Director,o=t.StencilManager,f=t.resources,d=t.renderer,p=t.murmurhash2_32_gc,D=t.Color,v=t.Label,m=t.BitmapFont,y=t.Sprite,_=t.MotionStreak,M=t.TiledLayer},function(t){x=t.JSB}],execute:function(){e._RF.push({},"bd7e7vtojdMUJODlbuIb/Yi","MultTextures",void 0);r.Texture.prototype.texID=-1,a.prototype.isMult=!1,i.prototype.useMult=!1;var g=t("MultBatch2D",{native:!1,enable:!1,parent:null,incID:0,count:0,hash:0,reset:function(){this.incID+=this.count,this.count=0}}),I=new s({width:1,height:1,_compressed:!1,format:r.Format.RGBA32F,_data:new Float32Array(4).fill(0)}),b=new n;b.setFilters(1,1),b.image=I,b.addRef();var T=function(){g.enable=!1,f.load("multTextures/Mult-material",a,(function(t,r){if(!t){var i=e.builtinResMgr.get("ui-sprite-material");i&&(i._hash=g.hash=a.getHash(i),g.parent=r,g.enable=!0,r.addRef())}}))},V=0,U=[];u.once(h.EVENT_GAME_INITED,(function(){g.native||T()}));var S=function(t,e,r,a){var i=r.renderData,s=i.chunk,n=i.data,u=s.vb,h=i.vertexCount;if(t.hasChangedFlags||1===i.dataDirty)for(var l=t.worldMatrix,c=l.m00,o=l.m01,f=l.m02,d=l.m03,p=l.m04,D=l.m05,v=l.m06,m=l.m07,y=l.m12,_=l.m13,M=l.m14,x=l.m15,g=1/255,I=0,b=0;b<h;b++){var T=n[b],V=T.x,U=T.y,S=d*V+m*U+x;S=S?1/S:1,u[I+0]=(c*V+p*U+y)*S,u[I+1]=(o*V+D*U+_)*S,u[I+2]=(f*V+v*U+M)*S,u[I+5]=a.r*g,u[I+6]=a.g*g,u[I+7]=a.b*g,u[I+8]=a.a*g,I+=9}s.bufferId;for(var A=s.vertexOffset,R=s.meshBuffer,F=s.meshBuffer.iData,H=R.indexOffset,B=0,E=h/4;B<E;B++){var k=A+4*B;F[H++]=k,F[H++]=k+1,F[H++]=k+2,F[H++]=k+1,F[H++]=k+3,F[H++]=k+2}R.setDirty(),R.indexOffset+=i.indexCount};u.once(h.EVENT_ENGINE_INITED,(function(){if(!g.native){!function(){var t=new D(255,255,255,255),e=new D(255,255,255,255),r=function(e,r){var a=e.node;t.set(e.color),t.a=255*a._uiProps.opacity,S(a,0,e,t)},a=function(t,r){if(t.renderData){var a=t.node;e.a=255*a._uiProps.opacity,S(a,0,t,e)}};v.prototype.useMult=!0;var i=v.Assembler;if(i){var s=i.getAssembler;i.getAssembler=function(t){var e=s.call(this,t);if(null==e.changeUV){e.changeUV=function(t){var e=t.renderData;e&&(e.dataDirty=1)};var i=e.updateUVs;i&&(t.font instanceof m||t.cacheMode===v.CacheMode.CHAR?e.updateUVs=function(t){i.call(this,t),this.changeUV(t)}:e.updateUVs=function(t){i.call(this,t),t.renderData&&t.ttfSpriteFrame&&this.changeUV(t)})}return t.font instanceof m?e.fillBuffers=r:e.fillBuffers=a,e}}}(),function(){y.prototype.useMult=!0;var t=y.Assembler;if(t){var e=t.getAssembler;t.getAssembler=function(t){var r=e.call(this,t);if(null==r.changeUV){r.changeUV=function(t){var e=t.renderData;e&&(e.dataDirty=1)};var a=r.updateUVs;a&&(t.type==y.Type.FILLED?t.fillType!=y.FillType.RADIAL&&(r.updateUVs=function(t,e,r){a.call(this,t,e,r),this.changeUV(t)}):t.type!=y.Type.TILED&&(r.updateUVs=function(t){a.call(this,t),t.spriteFrame&&this.changeUV(t)}));var i=r.updateWorldVertexAndUVData;i&&(r.updateWorldVertexAndUVData=function(t,e){i.call(this,t,e),this.changeUV(t)})}return r}}}(),function(){var t=e.UI.RenderData.prototype;t.texID=-1,t.isMult=!1,t.matDirty=!0,t.texDirty=!0,t.dataDirty=0,t.updateHash=function(){if(this.isMult&&g.enable){var t=""+(this.chunk?this.chunk.bufferId:-1)+this.layer+"98k";this.dataHash=p(t,666),this.hashDirty=!1}else{var e=""+(this.chunk?this.chunk.bufferId:-1)+this.layer+" "+this.textureHash;this.dataHash=p(e,666),this.hashDirty=!1}this.matDirty=!1},Object.defineProperty(t,"textureDirty",{get:function(){return this.texDirty},set:function(t){this.texDirty=t,!0===t&&(this.texID=-1)}});var r=function(t,e){t.isMult=!1;var r=e.getRenderMaterial(0);r&&g.enable&&e.useMult&&!t._isMeshBuffer&&(r._hash=r.hash||r._hash,r._hash||(r._hash=a.getHash(r)),t.isMult=g.hash==r._hash)},i=t.updatePass;t.updatePass=function(t){r(this,t),i.call(this,t)};var s=t.updateRenderData;t.updateRenderData=function(t,e){this.passDirty&&r(this,t),s.call(this,t,e)}}(),function(){if(M&&!x){var t=M.prototype;t.useMult=!0,t.dataDirty=!1;var e=t.setUserNodeDirty;t.setUserNodeDirty=function(t){e.call(this,t),t||(this.dataDirty=!0)},t._render=function(t){for(var e=this,r=this.node.layer,a=function(a){e._tiledDataArrayIdx=i;var n=e._tiledDataArray[i];if(e._drawInfoList[a],n.subNodes)n.subNodes.forEach((function(e){e&&(t.walk(e.node),a++)}));else{var u=n;if(u.texture){var h=!1,l=u.renderData;l.material=e.getRenderMaterial(0),l.texture!==u.texture&&(l.texture=u.texture),l.layer!==r&&(l.layer=r,h=!0),l.isMult=!0,h&&l.updateHash(),e.dataDirty&&(l.dataDirty=1),t.commitComp(e,u.renderData,u.texture,e._assembler,null),a++}}s=a},i=0,s=0;i<this._tiledDataArray.length;i++)a(s);this.dataDirty=!1,this.node._static=!0}}}(),function(){if(_){var t=_.prototype;t.useMult=!0;var e=t.lateUpdate;t.lateUpdate=function(t){if(e.call(this,t),this._assembler&&this.points.length>=2){var r=this.renderData;r&&(r.dataDirty=1)}}}}(),l.on(c.EVENT_AFTER_DRAW,(function(t){g.reset(),V=0}));var t=e.internal.Batcher2D.prototype;t.isMult=!1,t.isNative=x,t.cacheTextures=[],t.currMaterial=null,Object.defineProperty(t,"_currMaterial",{get:function(){return this.currMaterial},set:function(t){var e=this._currRenderData;t==this._emptyMaterial&&(e=null),this.currMaterial=function(t,e){void 0===e&&(e=null);var r=g;if(r.reset(),!(r.enable&&t&&e&&e.isMult))return t;if(!r.parent||!r.parent.isValid)return T(),t;var a=U[V++];if(!a||!a.isValid){var i={parent:r.parent};a=new d.MaterialInstance(i),U[V-1]=a,a.cacheTextures=[],a.isMult=!0,a.addRef()}return a}(t,e),this.isMult=!1,g.enable&&this.currMaterial&&this.currMaterial.isMult&&(this.cacheTextures=this.currMaterial.cacheTextures,this.isMult=!0)}});t.commitComp=function(t,e,r,a,i){var s=0,n=null,u=-1;if(e&&e.chunk){if(!e.isValid())return;s=e.dataHash,n=e.material,u=e.chunk.bufferId}2===t.stencilStage||6===t.stencilStage?this._insertMaskBatch(t):t._stencilStage=o.sharedManager.stage;var h=t.stencilStage,l=-1,c=null,f=g,d=!1,p=this.isNative;if(f.enable&&e&&e.isMult&&(r&&r.isValid&&(c=r.getGFXTexture()),c&&(void 0===c.texID&&(c.texID=-1),d=(l=c.texID-f.incID)<0&&f.count>=8,this.isMult&&(n=this._currMaterial))),(d||this._currHash!==s||0===s||this._currMaterial!==n||this._currDepthStencilStateStage!==h)&&(this.autoMergeBatches(this._currComponent),p||!e||e._isMeshBuffer||this.updateBuffer(e.vertexFormat,u),this._currRenderData=e,this._currHash=e?e.dataHash:0,this._currComponent=t,this._currTransform=i,this._currMaterial=t.getRenderMaterial(0),this._currDepthStencilStateStage=h,this._currLayer=t.node.layer,r?(this._currTexture=r.getGFXTexture(),this._currSampler=r.getGFXSampler(),this._currTextureHash=r.getHash(),this._currSamplerHash=this._currSampler.hash):(this._currTexture=null,this._currSampler=null,this._currTextureHash=0,this._currSamplerHash=0)),!p&&a.fillBuffers&&a.fillBuffers(t,this),c&&this.isMult){if(l<0||0===f.count){l=f.count++,c.texID=l+f.incID;var D=this.cacheTextures;D[l]!==c&&(D[l]=c,(c=r.texture)||(c=r),this._currMaterial.setProperty("texture"+l,c))}this.fillTextureID(e,l),p&&e.renderDrawInfo.setMaterial(this._currMaterial)}},t.fillTextureID=function(t,e){var r=t.chunk.vb,a=0,i=r.length;if(1===t.dataDirty)for(var s=0;s<i;s+=9)a=~~(1e5*r[s+3]),r[s+3]=10*a+e;else if(t.texID!==e)for(var n=0;n<i;n+=9)a=~~(.1*r[n+3]),r[n+3]=10*a+e;t.dataDirty=0,t.texID=e}}})),e._RF.pop()}}}));
+System.register("chunks:///_virtual/MultTextures.ts", ['cc', './env'], function (exports) {
+  var cclegacy, gfx, Material, Component, ImageAsset, Texture2D, game, Game, director, Director, StencilManager, assert, resources, renderer, murmurhash2_32_gc, Color, Label, BitmapFont, Sprite, MotionStreak, TiledLayer, JSB;
+  return {
+    setters: [function (module) {
+      cclegacy = module.cclegacy;
+      gfx = module.gfx;
+      Material = module.Material;
+      Component = module.Component;
+      ImageAsset = module.ImageAsset;
+      Texture2D = module.Texture2D;
+      game = module.game;
+      Game = module.Game;
+      director = module.director;
+      Director = module.Director;
+      StencilManager = module.StencilManager;
+      assert = module.assert;
+      resources = module.resources;
+      renderer = module.renderer;
+      murmurhash2_32_gc = module.murmurhash2_32_gc;
+      Color = module.Color;
+      Label = module.Label;
+      BitmapFont = module.BitmapFont;
+      Sprite = module.Sprite;
+      MotionStreak = module.MotionStreak;
+      TiledLayer = module.TiledLayer;
+    }, function (module) {
+      JSB = module.JSB;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "bd7e7vtojdMUJODlbuIb/Yi", "MultTextures", undefined);
 
-System.register("chunks:///_virtual/resources",["./MultTextures.ts"],(function(){return{setters:[null],execute:function(){}}}));
+      //最大纹理,固定8张
+      var MAX_TEX = 8;
+
+      //原生开关,根据需要开启或关闭
+      var SUPPORT_NATIVE = true;
+
+      //@ts-ignore
+      gfx.Texture.prototype.texID = -1; //当前纹理id
+      //@ts-ignore
+      Material.prototype.isMult = false; //多纹理材质的标记
+      //@ts-ignore
+      Component.prototype.useMult = false; //组件多纹理开关
+
+      var MultBatch2D = exports('MultBatch2D', {
+        "native": !SUPPORT_NATIVE,
+        enable: false,
+        parent: null,
+        incID: 0,
+        count: 0,
+        hash: 0,
+        reset: function reset() {
+          this.incID += this.count;
+          this.count = 0;
+        }
+      });
+      var _image = new ImageAsset({
+        width: 1,
+        height: 1,
+        _compressed: false,
+        format: gfx.Format.RGBA32F,
+        _data: new Float32Array(4).fill(0)
+      });
+      var Texture = new Texture2D();
+      Texture.setFilters(1, 1);
+      Texture.image = _image;
+      Texture.addRef();
+
+      //预加载多纹理材质
+      var loadMultTextures = function loadMultTextures() {
+        MultBatch2D.enable = false;
+        resources.load("multTextures/Mult-material", Material, function (err, material) {
+          if (!err) {
+            var mat = cclegacy.builtinResMgr.get('ui-sprite-material');
+            if (mat) {
+              mat._hash = MultBatch2D.hash = Material.getHash(mat);
+              MultBatch2D.parent = material;
+              MultBatch2D.enable = true;
+              material.addRef();
+            }
+          }
+        });
+      };
+
+      //多纹理材质缓存队列
+      var _cacheUseCount = 0;
+      var _cacheMaterials = [];
+      var getMultMaterial = function getMultMaterial(oldMat, rd) {
+        if (rd === void 0) {
+          rd = null;
+        }
+        var MB = MultBatch2D;
+        MB.reset();
+        if (!MB.enable || !oldMat || !rd || !rd.isMult) {
+          return oldMat;
+        }
+        if (!MB.parent || !MB.parent.isValid) {
+          loadMultTextures();
+          return oldMat;
+        }
+        var newMat = _cacheMaterials[_cacheUseCount++];
+        if (!newMat || !newMat.isValid) {
+          var material = {
+            parent: MB.parent
+          };
+          newMat = new renderer.MaterialInstance(material);
+          _cacheMaterials[_cacheUseCount - 1] = newMat;
+          newMat['cacheTextures'] = [];
+          newMat['isMult'] = true;
+          newMat.addRef();
+        }
+        return newMat;
+      };
+
+      //游戏启动前，务必加载多纹理材质
+      game.once(Game.EVENT_GAME_INITED, function () {
+        if (MultBatch2D["native"]) return; //|| JSB
+
+        loadMultTextures();
+      });
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // 多纹理合批，sprite , label , renderdata ，等其他组件的重写和监听
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      var inject_Renderdata = function inject_Renderdata() {
+        var RenderData = cclegacy.UI.RenderData.prototype;
+        RenderData.texID = -1;
+        RenderData.isMult = false;
+        RenderData.matDirty = true;
+        RenderData.texDirty = true;
+        RenderData.dataDirty = 0x0;
+
+        //兼容多纹理hash计算
+        RenderData.updateHash = function () {
+          if (this.isMult && MultBatch2D.enable) {
+            var bid = this.chunk ? this.chunk.bufferId : -1;
+            var hashString = "" + bid + this.layer + '98k';
+            this.dataHash = murmurhash2_32_gc(hashString, 666);
+            this.hashDirty = false;
+          } else {
+            var _bid = this.chunk ? this.chunk.bufferId : -1;
+            var _hashString = "" + _bid + this.layer + " " + this.textureHash;
+            this.dataHash = murmurhash2_32_gc(_hashString, 666);
+            this.hashDirty = false;
+          }
+          this.matDirty = false;
+        };
+
+        //监听纹理的变更
+        Object.defineProperty(RenderData, "textureDirty", {
+          get: function get() {
+            return this.texDirty;
+          },
+          set: function set(val) {
+            this.texDirty = val;
+            if (val === true) {
+              this.texID = -1;
+            }
+          }
+        });
+
+        //检测是否支持多纹理合批
+        var isMultTextures = function isMultTextures(rd, uir) {
+          rd.isMult = false;
+          var material = uir.getRenderMaterial(0);
+          if (!material || !MultBatch2D.enable) {
+            return;
+          }
+
+          //@ts-ignore
+          //组件控制开关 useMult: 可以开启自定义组件参与多纹理
+          if (uir.useMult && !rd._isMeshBuffer) {
+            material._hash = material.hash || material._hash;
+            if (!material._hash) {
+              material._hash = Material.getHash(material);
+            }
+            rd.isMult = MultBatch2D.hash == material._hash;
+          }
+        };
+
+        //监听pass变更，检测是否多纹理支持
+        var updatePass = RenderData.updatePass;
+        RenderData.updatePass = function (comp) {
+          isMultTextures(this, comp);
+          updatePass.call(this, comp);
+        };
+
+        //监听pass变更，检测是否多纹理支持
+        var updateRenderData = RenderData.updateRenderData;
+        RenderData.updateRenderData = function (comp, frame) {
+          if (this.passDirty) {
+            isMultTextures(this, comp);
+          }
+          //isMultTextures(this, comp);
+          updateRenderData.call(this, comp, frame);
+        };
+      };
+      var fillMeshVertices3D = function fillMeshVertices3D(node, renderer, cmp, color) {
+        var renderData = cmp.renderData;
+        var chunk = renderData.chunk;
+        var dataList = renderData.data;
+        var vData = chunk.vb;
+        var vertexCount = renderData.vertexCount;
+        if (node.hasChangedFlags || renderData.dataDirty === 1) {
+          var m = node.worldMatrix; // node.getWorldMatrix(m);
+          var m00 = m.m00,
+            m01 = m.m01,
+            m02 = m.m02,
+            m03 = m.m03,
+            m04 = m.m04,
+            m05 = m.m05,
+            m06 = m.m06,
+            m07 = m.m07,
+            m12 = m.m12,
+            m13 = m.m13,
+            m14 = m.m14,
+            m15 = m.m15;
+          var scale = 1.0 / 255;
+          var vertexOffset = 0;
+          for (var i = 0; i < vertexCount; i++) {
+            var vert = dataList[i];
+            var x = vert.x;
+            var y = vert.y;
+            var rhw = m03 * x + m07 * y + m15;
+            rhw = rhw ? 1 / rhw : 1;
+            vData[vertexOffset + 0] = (m00 * x + m04 * y + m12) * rhw;
+            vData[vertexOffset + 1] = (m01 * x + m05 * y + m13) * rhw;
+            vData[vertexOffset + 2] = (m02 * x + m06 * y + m14) * rhw;
+            //Color.toArray(vData, color, vertexOffset + 5);
+            //const scale = (a instanceof Color || a.a > 1) ? 1 / 255 : 1;
+            vData[vertexOffset + 5] = color.r * scale;
+            vData[vertexOffset + 6] = color.g * scale;
+            vData[vertexOffset + 7] = color.b * scale;
+            vData[vertexOffset + 8] = color.a * scale;
+            vertexOffset += 9;
+          }
+        }
+
+        // fill index data
+        var bid = chunk.bufferId;
+        var vid = chunk.vertexOffset;
+        var meshBuffer = chunk.meshBuffer;
+        var ib = chunk.meshBuffer.iData;
+        var indexOffset = meshBuffer.indexOffset;
+        for (var _i = 0, count = vertexCount / 4; _i < count; _i++) {
+          var start = vid + _i * 4;
+          ib[indexOffset++] = start;
+          ib[indexOffset++] = start + 1;
+          ib[indexOffset++] = start + 2;
+          ib[indexOffset++] = start + 1;
+          ib[indexOffset++] = start + 3;
+          ib[indexOffset++] = start + 2;
+        }
+        meshBuffer.setDirty();
+        meshBuffer.indexOffset += renderData.indexCount;
+      };
+      var inject_Label = function inject_Label() {
+        var tempColor0 = new Color(255, 255, 255, 255);
+        var tempColor1 = new Color(255, 255, 255, 255);
+        var bmfillBuffers = function bmfillBuffers(comp, renderer) {
+          var node = comp.node;
+          tempColor0.set(comp.color);
+          tempColor0.a = node._uiProps.opacity * 255;
+          // Fill All
+          fillMeshVertices3D(node, renderer, comp, tempColor0);
+        };
+        var lefillBuffers = function lefillBuffers(comp, renderer) {
+          if (!comp.renderData) {
+            return;
+          }
+          var node = comp.node;
+          tempColor1.a = node._uiProps.opacity * 255;
+          // Fill All
+          fillMeshVertices3D(node, renderer, comp, tempColor1);
+        };
+
+        //@ts-ignore
+        Label.prototype.useMult = true;
+        //监听 Label 的 uv 变更
+        var label = Label.Assembler;
+        if (label) {
+          var getAssembler = label.getAssembler;
+          label.getAssembler = function (comp) {
+            var assembler = getAssembler.call(this, comp);
+            if (assembler.changeUV == undefined) {
+              assembler.changeUV = function (s) {
+                var rd = s.renderData;
+                rd && (rd.dataDirty = 1);
+              };
+              var UVs = assembler.updateUVs;
+              if (UVs) {
+                if (comp.font instanceof BitmapFont) {
+                  assembler.updateUVs = function (comp) {
+                    UVs.call(this, comp);
+                    this.changeUV(comp);
+                  };
+                } else if (comp.cacheMode === Label.CacheMode.CHAR) {
+                  assembler.updateUVs = function (comp) {
+                    UVs.call(this, comp);
+                    this.changeUV(comp);
+                  };
+                } else {
+                  assembler.updateUVs = function (comp) {
+                    UVs.call(this, comp);
+                    var renderData = comp.renderData;
+                    if (!renderData || !comp.ttfSpriteFrame) {
+                      return;
+                    }
+                    this.changeUV(comp);
+                  };
+                }
+              }
+            }
+            if (comp.font instanceof BitmapFont) {
+              assembler.fillBuffers = bmfillBuffers;
+            } else {
+              assembler.fillBuffers = lefillBuffers;
+            }
+            return assembler;
+          };
+        }
+      };
+      var inject_Sprite = function inject_Sprite() {
+        //@ts-ignore
+        Sprite.prototype.useMult = true;
+        //监听 sprite 的 uv 变更
+        var sprite = Sprite.Assembler;
+        if (sprite) {
+          var getAssembler = sprite.getAssembler;
+          sprite.getAssembler = function (comp) {
+            var assembler = getAssembler.call(this, comp);
+            if (assembler.changeUV == undefined) {
+              assembler.changeUV = function (s) {
+                var rd = s.renderData;
+                rd && (rd.dataDirty = 1);
+              };
+              var UVs = assembler.updateUVs;
+              if (UVs) {
+                if (comp.type == Sprite.Type.FILLED) {
+                  if (comp.fillType != Sprite.FillType.RADIAL) {
+                    assembler.updateUVs = function (s, f0, f1) {
+                      UVs.call(this, s, f0, f1);
+                      this.changeUV(s);
+                    };
+                  }
+                } else {
+                  if (comp.type != Sprite.Type.TILED) {
+                    assembler.updateUVs = function (s) {
+                      UVs.call(this, s);
+                      if (s.spriteFrame) this.changeUV(s);
+                    };
+                  }
+                }
+              }
+              var verUV = assembler.updateWorldVertexAndUVData;
+              if (verUV) {
+                assembler.updateWorldVertexAndUVData = function (s, c) {
+                  verUV.call(this, s, c);
+                  this.changeUV(s);
+                };
+              }
+            }
+            return assembler;
+          };
+        }
+      };
+      var inject_MotionStreak = function inject_MotionStreak() {
+        if (MotionStreak) {
+          var motionStreak = MotionStreak.prototype;
+          motionStreak.useMult = true; //参与多纹理合批
+
+          var lateUpdate = motionStreak.lateUpdate;
+          motionStreak.lateUpdate = function (dt) {
+            lateUpdate.call(this, dt);
+            if (this._assembler) {
+              if (this.points.length >= 2) {
+                var rd = this.renderData;
+                //全局标记刷新纹理uv
+                rd && (rd.dataDirty = 1);
+              }
+            }
+          };
+        }
+      };
+      var inject_TiledLayer = function inject_TiledLayer() {
+        if (TiledLayer && !JSB) {
+          var Tiled = TiledLayer.prototype;
+          Tiled.useMult = true; //参与多纹理合批
+          Tiled.dataDirty = false; //全局标记刷新纹理uv
+
+          var setUserNodeDirty = Tiled.setUserNodeDirty;
+          Tiled.setUserNodeDirty = function (dirty) {
+            setUserNodeDirty.call(this, dirty);
+            if (!dirty) {
+              //全局标记刷新纹理uv
+              this.dataDirty = true;
+            }
+          };
+          Tiled._render = function (ui) {
+            var _this = this;
+            var layer = this.node.layer;
+            var _loop = function _loop(_j) {
+              _this._tiledDataArrayIdx = i;
+              var m = _this._tiledDataArray[i];
+              var info = _this._drawInfoList[_j];
+              if (m.subNodes) {
+                // 提前处理 User Nodes
+                m.subNodes.forEach(function (c) {
+                  if (c) {
+                    ui.walk(c.node);
+                    _j++;
+                  }
+                });
+              } else {
+                var td = m;
+                if (td.texture) {
+                  var isDirty = false;
+                  var rd = td.renderData;
+                  rd.material = _this.getRenderMaterial(0);
+                  if (rd.texture !== td.texture) {
+                    rd.texture = td.texture;
+                    // isDirty = true;
+                  }
+
+                  if (rd.layer !== layer) {
+                    rd.layer = layer;
+                    isDirty = true;
+                  }
+                  rd.isMult = true; //强制参与多纹理
+
+                  // if (JSB) rd._renderDrawInfo = info;
+
+                  //更新renderdata hash
+                  isDirty && rd.updateHash();
+                  if (_this.dataDirty) rd.dataDirty = 1;
+
+                  // NOTE: 由于 commitComp 只支持单张纹理, 故分多次提交
+                  ui.commitComp(_this, td.renderData, td.texture, _this._assembler, null);
+                  _j++;
+                }
+              }
+              j = _j;
+            };
+            for (var i = 0, j = 0; i < this._tiledDataArray.length; i++) {
+              _loop(j);
+            }
+            this.dataDirty = false;
+            this.node._static = true;
+          };
+        }
+      };
+      game.once(Game.EVENT_ENGINE_INITED, function () {
+        if (MultBatch2D["native"]) return; //|| JSB
+
+        inject_Label();
+        inject_Sprite();
+        inject_Renderdata();
+        inject_TiledLayer();
+        inject_MotionStreak();
+        director.on(Director.EVENT_AFTER_DRAW, function (dt) {
+          MultBatch2D.reset();
+          _cacheUseCount = 0;
+        });
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 多纹理合批，合批核心过程修改
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        var Batcher2D = cclegacy.internal.Batcher2D.prototype;
+        Batcher2D.isMult = false; //多纹理标记
+        Batcher2D.isNative = JSB; //原生的开关
+        Batcher2D.cacheTextures = []; //纹理缓存数据
+        Batcher2D.currMaterial = null; //当前指定材质
+        Object.defineProperty(Batcher2D, "_currMaterial", {
+          get: function get() {
+            return this.currMaterial;
+          },
+          set: function set(material) {
+            //检测多纹理材质，接替 _currMaterial
+            var rd = this._currRenderData; //重置检测
+            if (material == this._emptyMaterial) rd = null;
+            // if (this.currMaterial === material) return;
+            this.currMaterial = getMultMaterial(material, rd);
+            this.isMult = false;
+            if (MultBatch2D.enable) {
+              if (this.currMaterial && this.currMaterial.isMult) {
+                this.cacheTextures = this.currMaterial.cacheTextures;
+                this.isMult = true; //当前 batcher 多纹理标记
+              }
+            }
+          }
+        });
+
+        var Stage_ENTER_LEVEL = 2;
+        var Stage_ENTER_LEVEL_INVERTED = 6;
+        //@ts-ignore
+
+        Batcher2D.commitComp = function (comp, renderData, frame, assembler, transform) {
+          var dataHash = 0;
+          var mat = null;
+          var bufferID = -1;
+          if (renderData && renderData.chunk) {
+            if (!renderData.isValid()) return;
+            dataHash = renderData.dataHash;
+            mat = renderData.material;
+            bufferID = renderData.chunk.bufferId;
+          }
+
+          // Notice: A little hack, if it is for mask, not need update here, while control by stencilManger
+          if (comp.stencilStage === Stage_ENTER_LEVEL || comp.stencilStage === Stage_ENTER_LEVEL_INVERTED) {
+            this._insertMaskBatch(comp);
+          } else {
+            //@ts-ignore
+            comp._stencilStage = StencilManager.sharedManager.stage;
+          }
+          var depthStencilStateStage = comp.stencilStage;
+          var texID = -1;
+          var texture = null;
+          var MB = MultBatch2D;
+          var flushBatch = false;
+          var isNative = this.isNative;
+          //@ts-ignore
+          if (MB.enable && renderData && renderData.isMult) {
+            if (frame && frame.isValid) texture = frame.getGFXTexture();
+            if (texture) {
+              //@ts-ignore
+              if (texture.texID === undefined) texture.texID = -1;
+              //@ts-ignore
+              texID = texture.texID - MB.incID;
+              flushBatch = texID < 0 && MB.count >= MAX_TEX;
+              if (this.isMult) mat = this._currMaterial;
+            }
+          }
+          if (flushBatch || this._currHash !== dataHash || dataHash === 0 || this._currMaterial !== mat || this._currDepthStencilStateStage !== depthStencilStateStage) {
+            // Merge all previous data to a render batch, and update buffer for next render data
+            this.autoMergeBatches(this._currComponent);
+            if (!isNative && renderData && !renderData._isMeshBuffer) {
+              this.updateBuffer(renderData.vertexFormat, bufferID);
+            }
+            this._currRenderData = renderData;
+            this._currHash = renderData ? renderData.dataHash : 0;
+            this._currComponent = comp;
+            this._currTransform = transform;
+            this._currMaterial = comp.getRenderMaterial(0);
+            this._currDepthStencilStateStage = depthStencilStateStage;
+            this._currLayer = comp.node.layer;
+            if (frame) {
+              {
+                assert(frame.isValid, 'frame should not be invalid, it may have been released');
+              }
+              this._currTexture = frame.getGFXTexture();
+              this._currSampler = frame.getGFXSampler();
+              this._currTextureHash = frame.getHash();
+              this._currSamplerHash = this._currSampler.hash;
+            } else {
+              this._currTexture = null;
+              this._currSampler = null;
+              this._currTextureHash = 0;
+              this._currSamplerHash = 0;
+            }
+          }
+          if (!isNative && assembler.fillBuffers) assembler.fillBuffers(comp, this);
+          if (texture && this.isMult) {
+            if (texID < 0 || MB.count === 0) {
+              texID = MB.count++;
+              //@ts-ignore
+              //let id = texture.objectID;
+              //@ts-ignore
+              texture.texID = texID + MB.incID;
+              var caches = this.cacheTextures;
+              if (caches[texID] !== texture) {
+                caches[texID] = texture;
+                //@ts-ignore
+                texture = frame.texture;
+                if (!texture) texture = frame;
+                this._currMaterial.setProperty("texture" + texID, texture);
+              }
+            }
+            this.fillTextureID(renderData, texID);
+            if (isNative) {
+              renderData.renderDrawInfo.setMaterial(this._currMaterial);
+            }
+          }
+        };
+
+        //填充多纹理 id 到顶点数据
+        Batcher2D.fillTextureID = function (renderData, texID) {
+          // if (!renderData) return;
+          var vbuf = renderData.chunk.vb;
+          var uvX = 0,
+            length = vbuf.length;
+          if (renderData.dataDirty === 1) {
+            for (var i = 0; i < length; i += 9) {
+              uvX = ~~(vbuf[i + 3] * 100000);
+              vbuf[i + 3] = uvX * 10 + texID;
+            }
+          } else {
+            if (renderData.texID !== texID) {
+              for (var _i2 = 0; _i2 < length; _i2 += 9) {
+                uvX = ~~(vbuf[_i2 + 3] * 0.1);
+                vbuf[_i2 + 3] = uvX * 10 + texID;
+              }
+            }
+          }
+          renderData.dataDirty = 0;
+          renderData.texID = texID;
+        };
+      });
+
+      //*/
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/resources", ['./MultTextures.ts'], function () {
+  return {
+    setters: [null],
+    execute: function () {}
+  };
+});
 
 (function(r) {
   r('virtual:///prerequisite-imports/resources', 'chunks:///_virtual/resources'); 
